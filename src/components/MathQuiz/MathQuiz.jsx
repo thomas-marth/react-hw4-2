@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Answer from "../Answer/Answer";
 import styles from "./MathQuiz.module.css";
 
@@ -8,17 +8,14 @@ const getRandomNumber = (min, max) => {
 
 const MathQuiz = () => {
   const [points, setPoints] = useState(0);
-  const [a, setA] = useState(0);
-  const [b, setB] = useState(0);
+
+  const [a, setA] = useState(() => getRandomNumber(1, 10));
+  const [b, setB] = useState(() => getRandomNumber(1, 10));
 
   const generateNewProblem = () => {
     setA(getRandomNumber(1, 10));
     setB(getRandomNumber(1, 10));
   };
-
-  useEffect(() => {
-    generateNewProblem();
-  }, []);
 
   const updatePoints = (userAnswer) => {
     const correctAnswer = a + b;
